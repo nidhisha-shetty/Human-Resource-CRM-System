@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<br>
+<h3 align="center"><u> Edit user details </u></h3>
+{% for message in messages %}
+	{{ message }} 
+{% endfor %}  
+<form method="POST"> {% csrf_token %}
+<table align="center">
+{{ user_form }}
+</table> <br>
+<p align="center">
+<input type='submit' value='Save' button type="button" class="btn btn-primary">
+<a href="/"><button type="button" class="btn btn-primary">Home</button></a>
+</p>
+</form>
+{% endblock %}
+{% block javascript %}
+{% endblock javascript %}

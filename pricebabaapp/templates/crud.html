@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title %}User list{% endblock %}
+{% block content %}
+<div class="container">
+  <div class="col-md-8">
+    <h3>USERS</h3>
+    <table id="userTable" class="table table-striped">
+      <tr>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>Age</th>
+        <th>DOB</th>
+        <th>Location</th>
+        <th>Action</th>
+      </tr>
+      {% if users %}
+      {% for user in users %}
+      <tr id="user-{{user.id}}">
+        <td class="userName userData" name="name">{{user.first_name}}</td>
+        <td class="userAddress userData" name="address">{{user.last_name}}</td>
+        <td class="userAge userData" name="age">{{user.email}}</td>
+        <td class="userAge userData" name="age">{{user.mobile}}</td>
+        <td class="userName userData" name="name">{{user.age}}</td>
+        <td class="userAddress userData" name="address">{{user.dob}}</td>
+        <td class="userAge userData" name="age">{{user.location}}</td>
+        <td align="center">
+            <a href="{{ user.details_edit }}" class="btn btn-primary btn-sm">EDIT</a>
+        </td>
+      </tr>
+      {% endfor %}
+      {% else %}
+        No Users
+      {% endif %}
+    </table>
+    {% if is_paginated %}
+      <div class="pagination">
+        <span class="page-links">
+          {% if page_obj.has_previous %}
+              <a href="?page=1">&laquo; first-</a>
+              <a href="?page={{ page_obj.previous_page_number }}">previouspage-</a>
+          {% endif %}
+          <span class="page-current">
+              <b>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}-
+          </span>
+          {% if page_obj.has_next %}
+              <a href="?page={{ page_obj.next_page_number }}">next-</a>
+              <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a></b>
+          {% endif %}
+        </span>
+      </div>
+    {% endif %}
+  </div>                                                                                      
+</div>
+<p align="center"><a href="/user_add"><button type="button" class="btn btn-primary">Add users</button></a></p>
+{% endblock %}

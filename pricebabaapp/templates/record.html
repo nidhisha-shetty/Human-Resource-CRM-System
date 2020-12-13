@@ -1,0 +1,27 @@
+<table class="table">
+    <tr>
+        <th scope="col">User first name</th>
+        <th scope="col">User last name</th>
+        <th scope="col">User email</th>
+        <th scope="col">User mobile</th>
+        <th scope="col">User age</th>
+        <th scope="col">User dob</th>
+        <th scope="col">Action</th>
+    </tr>
+    <tbody>
+ 	{% for x in emp %}
+	<tr>
+        <td>{{ x.first_name }}</td>
+        <td>{{ x.last_name }}</td>
+        <td>{{ x.email }}</td>
+        <td>{{ x.mobile }}</td>
+        <td>{{ x.age }}</td>
+        <td>{{ x.dob }}</td>
+        <!-- <td><a href="{{ x.details_edit }}">Edit</a></td> -->
+        
+	</tr>
+	{% endfor %}
+</tbody>
+</table>
+
+<a href="/user_add">Add user</a>
