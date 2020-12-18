@@ -19,4 +19,4 @@ class Pricebabaf(forms.ModelForm):
 		widgets = {
             'dob': DateInput(),
         }
-	
+		

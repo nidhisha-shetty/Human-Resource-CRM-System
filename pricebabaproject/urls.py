@@ -20,7 +20,6 @@ from pricebabaapp.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('user_add', add_view),
-    # path('', list_view),
     path('user_edit/<int:id>/', edit_view),
-    path('', crudview.as_view()),
+    path('', list_view),
 ]

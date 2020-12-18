@@ -14,7 +14,7 @@ def add_view(request):
 		form.save()
 		form=Pricebabaf()
 		messages.info(request, "User details added successfully!")
-	context={
+	context={  
 		'forming':form
 		}
 	return render(request, "emp_create.html", context)
@@ -39,8 +39,8 @@ def edit_view(request, id):
     }
     return render(request, "edit.html", context)
 
-class crudview(ListView):
-    model = Pricebaba
-    template_name = 'crud.html'
-    context_object_name = 'users'
-    paginate_by = 5
+# class crudview(ListView):
+#     model = Pricebaba
+#     template_name = 'crud.html'
+#     context_object_name = 'users'
+#     paginate_by = 5
