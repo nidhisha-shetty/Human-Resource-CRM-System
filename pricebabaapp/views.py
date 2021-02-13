@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import Pricebabaf
 from django.contrib import messages
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login, authenticate
 from .models import Pricebaba
 from django.views.generic import ListView
 from django.views.generic import View
@@ -38,6 +40,20 @@ def edit_view(request, id):
     	'user_form':form
     }
     return render(request, "edit.html", context)
+
+def signup_view(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('/user_add')
+    else:
+        form = UserCreationForm()
+    return render(request, "signup.html", {'form': form})
 
 # class crudview(ListView):
 #     model = Pricebaba
