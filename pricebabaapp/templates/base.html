@@ -1,6 +1,7 @@
 <!doctype html>
 <h1 align="center">User management system</h1>
-{% load static %}  
+{% load static %}
+
 <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -8,10 +9,9 @@
 <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
 
-<body style="background-color:lightblue"
-<div class="container">
-<div class="row">
-  {% block content %}
-  {% endblock content %}
+{% block content %}
+{% endblock content %}
+
+<body style="background:azure;"
 </div>
 </div>

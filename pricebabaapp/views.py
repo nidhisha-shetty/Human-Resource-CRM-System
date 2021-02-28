@@ -3,13 +3,15 @@ from .forms import Pricebabaf
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, authenticate
+from django.contrib.auth.decorators import login_required
+from .decorators import user_is_entry_author
 from .models import Pricebaba
 from django.views.generic import ListView
 from django.views.generic import View
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
-
+@login_required
 def add_view(request):
 	form=Pricebabaf(request.POST or None)
 	if form.is_valid():
@@ -29,9 +31,13 @@ def list_view(request):
     }
     return render(request, "record.html", context)
 
-def edit_view(request, id):
-    user=Pricebaba.objects.get(id=id)
-    form=Pricebabaf(request.POST or None, request.FILES or None, instance=user)
+@login_required
+@user_is_entry_author
+def edit_view(request, id, **kwargs):
+    # user=Pricebaba.objects.get(id=id)
+    entry = Pricebaba.objects.get(pk=id)
+
+    form=Pricebabaf(request.POST or None, request.FILES or None, instance=entry)
     if form.is_valid():  
     	form.save()
     	messages.info(request, "User details changed successfully!")
